@@ -53,10 +53,7 @@ variable "instance_count" {
   // default = 1
 }
 
-variable "instance_key_name" {
-  type    = string
-  default = ""
-}
+
 
 variable "instance_tags" {
   type = map(string)

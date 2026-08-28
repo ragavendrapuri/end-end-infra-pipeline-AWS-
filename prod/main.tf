@@ -21,6 +21,5 @@ module "infra_services" {
   public_cidr       = "172.31.1.0/24"
   private_cidr      = "172.31.2.0/24"
   bucket_name       = "testing-terraform-s3-bucket-data"
-  instance_key_name = "test-tf-key"
   add_eip           = true
 }

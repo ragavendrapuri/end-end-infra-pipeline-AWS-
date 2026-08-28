@@ -48,3 +48,9 @@ resource "aws_iam_instance_profile" "ec2_profile" {
   name = "${var.cloud_env}-ec2-role"
   role = aws_iam_role.ec2_s3_access_role.name
 }
+
+#Attach the AWS-managed SSM policy so Session Manager can connect without SSH keys
+resource "aws_iam_role_policy_attachment" "ssm_policy_role" {
+  role       = aws_iam_role.ec2_s3_access_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
