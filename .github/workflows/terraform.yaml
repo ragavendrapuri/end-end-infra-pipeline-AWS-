@@ -31,37 +31,37 @@ jobs:
         run: terraform plan -out=tfplan
     
 # Runs when a PR is merged to main — auto-applies to dev, no approval needed.
-deploy-dev:
-  if: github.event_name == 'push'
-  runs-on: ubuntu-latest
-  defaults:
-    run:
-      working-directory: dev
-  env:
-    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  environment: dev
-  steps:
-    - uses: actions/checkout@v4
-    - uses: hashicorp/setup-terraform@v3
-    - run: terraform init
-    - run: terraform apply -auto-approve
+  deploy-dev:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dev
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    environment: dev
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform init
+      - run: terraform apply -auto-approve
 
 # Runs only after deploy-dev succeeds. The "environment: prod" line is what
   # triggers GitHub's required-reviewer approval gate before this job starts.
 
-deploy-prod:
-  needs: deploy-dev
-  runs-on: ubuntu-latest
-  defaults:
-    run:
-      working-directory: prod
-  env:
-    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  environment: prod
-  steps:
-    - uses: actions/checkout@v4
-    - uses: hashicorp/setup-terraform@v3
-    - run: terraform init
-    - run: terraform apply -auto-approve
+  deploy-prod:
+    needs: deploy-dev
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: prod
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    environment: prod
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform init
+      - run: terraform apply -auto-approve
