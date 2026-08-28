@@ -16,7 +16,7 @@ module "infra_services" {
   cloud_env      = "prod"
   vpc_tag_name   = "N10135_prod_vpc"
   instance_count = "2"
-  instance_type  = "t2.micro"
+  instance_type  = "t3.micro"
   vpc_cidr       = "172.31.0.0/16"
   public_cidr    = "172.31.1.0/24"
   private_cidr   = "172.31.2.0/24"
