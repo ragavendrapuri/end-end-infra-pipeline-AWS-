@@ -1,0 +1,75 @@
+[1mdiff --git a/dev/main.tf b/dev/main.tf[m
+[1mindex abe6da1..013a338 100644[m
+[1m--- a/dev/main.tf[m
+[1m+++ b/dev/main.tf[m
+[36m@@ -3,14 +3,14 @@[m [mprovider "aws" {[m
+ }[m
+ [m
+ module "infra_services" {[m
+[31m-  source            = "../modules/"[m
+[31m-  cloud_env         = "dev"[m
+[31m-  vpc_tag_name      = "N10135_dev_vpc"[m
+[31m-  instance_count    = "2"[m
+[31m-  instance_type     = "t2.micro"[m
+[31m-  vpc_cidr          = "172.31.0.0/16"[m
+[31m-  public_cidr       = "172.31.1.0/24"[m
+[31m-  private_cidr      = "172.31.2.0/24"[m
+[31m-  bucket_name       = "testing-terraform-s3-bucket-data"[m
+[31m-  add_eip           = true[m
+[32m+[m[32m  source         = "../modules/"[m
+[32m+[m[32m  cloud_env      = "dev"[m
+[32m+[m[32m  vpc_tag_name   = "N10135_dev_vpc"[m
+[32m+[m[32m  instance_count = "2"[m
+[32m+[m[32m  instance_type  = "t2.micro"[m
+[32m+[m[32m  vpc_cidr       = "172.31.0.0/16"[m
+[32m+[m[32m  public_cidr    = "172.31.1.0/24"[m
+[32m+[m[32m  private_cidr   = "172.31.2.0/24"[m
+[32m+[m[32m  bucket_name    = "testing-terraform-s3-bucket-data"[m
+[32m+[m[32m  add_eip        = true[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/modules/variables.tf b/modules/variables.tf[m
+[1mindex 7f8a3e9..f1da80f 100644[m
+[1m--- a/modules/variables.tf[m
+[1m+++ b/modules/variables.tf[m
+[36m@@ -29,8 +29,8 @@[m [mvariable "public_cidrs" {[m
+ }[m
+ [m
+ variable "private_cidrs" {[m
+[31m-    type    = list(string)[m
+[31m-    default = ["172.31.2.0/24","172.31.5.0/24"][m
+[32m+[m[32m  type    = list(string)[m
+[32m+[m[32m  default = ["172.31.2.0/24", "172.31.5.0/24"][m
+ }[m
+ [m
+ variable "access_ip" {[m
+[1mdiff --git a/prod/main.tf b/prod/main.tf[m
+[1mindex 4a4e327..629a479 100644[m
+[1m--- a/prod/main.tf[m
+[1m+++ b/prod/main.tf[m
+[36m@@ -12,14 +12,14 @@[m [mprovider "aws" {[m
+ }[m
+ [m
+ module "infra_services" {[m
+[31m-  source            = "../modules/"[m
+[31m-  cloud_env         = "prod"[m
+[31m-  vpc_tag_name      = "N10135_prod_vpc"[m
+[31m-  instance_count    = "2"[m
+[31m-  instance_type     = "t2.micro"[m
+[31m-  vpc_cidr          = "172.31.0.0/16"[m
+[31m-  public_cidr       = "172.31.1.0/24"[m
+[31m-  private_cidr      = "172.31.2.0/24"[m
+[31m-  bucket_name       = "testing-terraform-s3-bucket-data"[m
+[31m-  add_eip           = true[m
+[32m+[m[32m  source         = "../modules/"[m
+[32m+[m[32m  cloud_env      = "prod"[m
+[32m+[m[32m  vpc_tag_name   = "N10135_prod_vpc"[m
+[32m+[m[32m  instance_count = "2"[m
+[32m+[m[32m  instance_type  = "t2.micro"[m
+[32m+[m[32m  vpc_cidr       = "172.31.0.0/16"[m
+[32m+[m[32m  public_cidr    = "172.31.1.0/24"[m
+[32m+[m[32m  private_cidr   = "172.31.2.0/24"[m
+[32m+[m[32m  bucket_name    = "testing-terraform-s3-bucket-data"[m
+[32m+[m[32m  add_eip        = true[m
+ }[m
+\ No newline at end of file[m

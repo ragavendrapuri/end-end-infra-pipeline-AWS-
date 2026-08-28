@@ -16,7 +16,6 @@ resource "aws_instance" "ec2_instance" {
   count                  = var.instance_count
   ami                    = data.aws_ami.server_ami.id
   instance_type          = var.instance_type
-  key_name               = var.instance_key_name
   subnet_id              = element(aws_subnet.N10135_public_subnet.*.id, count.index)
   vpc_security_group_ids = [aws_security_group.N10135_test_sg.id]
 
