@@ -1,0 +1,29 @@
+# Local .terraform directories (downloaded provider plugins, module cache)
+**/.terraform/
+
+# Terraform state files (we use a remote S3 backend, these should never exist
+# locally, but ignoring them is a safety net in case one ever does)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Any local variable files that might contain secrets/overrides
+*.tfvars
+*.tfvars.json
+!example.tfvars
+
+# CLI configuration files that could contain credentials
+.terraformrc
+terraform.rc
+
+# Never commit AWS credentials, in any form
+.aws/
+*.pem
+*credentials*
+
+# Leftover clone-attempt folder from local troubleshooting
+end-end-infra-pipeline-AWS-/
