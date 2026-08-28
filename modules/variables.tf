@@ -29,8 +29,8 @@ variable "public_cidrs" {
 }
 
 variable "private_cidrs" {
-    type    = list(string)
-    default = ["172.31.2.0/24","172.31.5.0/24"]
+  type    = list(string)
+  default = ["172.31.2.0/24", "172.31.5.0/24"]
 }
 
 variable "access_ip" {
